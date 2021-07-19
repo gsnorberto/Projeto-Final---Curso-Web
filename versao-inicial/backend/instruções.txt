@@ -1,0 +1,4 @@
+INSTALAÇÃO DO POSTGRES
+
+COMANDOS
+    -npm start (inciar)
