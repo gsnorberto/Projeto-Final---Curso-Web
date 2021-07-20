@@ -1,0 +1,9 @@
+> psql -U postgres   (inicializar)
+
+> \l   (listar os bancos já definidos)
+
+> create database knowledge_final; (criar banco de dados)
+
+> \c knowledge_final  (se conectar com o banco de dados)
+
+> \dt  (verificar se há tabelas no banco)
