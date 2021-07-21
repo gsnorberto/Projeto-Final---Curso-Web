@@ -1,9 +1,20 @@
-> psql -U postgres   (inicializar)
+OBS: COMANDOS REALIZADOS DIRETAMENTE NO CMD
 
-> \l   (listar os bancos já definidos)
+COMANDOS:
+    //INICIALIZAR O POSTGRES
+        - psql -U postgres (senha: 11asdf)
+    
+    //LISTAR OS BDs JÁ CRIADOS
+        - \l
 
-> create database knowledge_final; (criar banco de dados)
+    //CRIAR UM BANCO DE DADOS (NÃO ESQUEÇA DO ";")
+        - create database knowledge_final;
 
-> \c knowledge_final  (se conectar com o banco de dados)
+    //SE CONECTAR AO BANCO DE DADOS DEFINIDO
+        - \c knowledge_final 
 
-> \dt  (verificar se há tabelas no banco)
+    //VERIFICAR SE HÁ TABELAS NO BD
+        - \dt 
+
+    SELECIONAR UM DB
+        - select * from knex_migrations;

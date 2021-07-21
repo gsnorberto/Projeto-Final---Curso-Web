@@ -1,12 +1,28 @@
 INSTALAÇÃO DO POSTGRES
 
+O QUE É O KNEX?
+    Knex é uma biblioteca que trabalha com vários bancos de dados, e nesse projeto ele será usado para acessar o postgres.
+
 COMANDOS
-    - npm start (inciar)
-    - npm i -g knex  (instalação do knex - que é uma biblioteca que trabalha com vários bancos de dados, e nesse projeto ele será usado para acessar o postgre).
-    - npx knex init (Cria o arquivo knexfile)
-    - knex migrate:make create_table_users (Cria uma tabela de usuários)
+    //INCIAR SERVIDOR BACKEND
+    - npm start
+
+    //INSTALAÇÃO DO KNEX
+    - npm i -g knex
+    
+    //CRIA O ARQUIVO "knexfile"
+    - npx knex init
+
+    //CRIA AS TABELAS DENTRO DE MIGRATION
+    - knex migrate:make create_table_users 
     - knex migrate:make create_table_categories
     - knex migrate:make create_table_articles
+
+    //RODA TODAS AS MIGRATIONS: USES, CATEGORIES, ARTICLES, ETC.
+    - knex migrate:latest 
+
+    //REVERSÃO - DESFAZ AS TABELAS CRIADAS NO COMANDO ACIMA
+    - knex migrate:rollback
 
 
 ACESSO
