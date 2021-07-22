@@ -27,3 +27,36 @@ COMANDOS
 
 ACESSO
     - http://localhost:3000/users
+
+
+ARQUIVOS
+    > api
+        > user.js - Aqui acontece o gerenciamento de um usuário (cadastro, alteração, leitura, exclusão etc). Sempre fazendo validação dos dados fornecidos pelo usuário. E essa validação acontece no "validation.js"
+            - EXPORT para INDEX
+
+        > validation.js - Como dito anteriormente, tem a função de validar os dados de entrada fornecidos pelo usuário
+            - EXPORT para INDEX
+
+    > config
+        > db.js - arquivo responsável pela comunicação com o banco de dados. Ele utiliza o framework knex que possibilita a comunicação com o postgres (BD usado nesse projeto).
+            - IMPORT - knexfile.js (arquivo com as configurações do postgres)
+            - EXPORT - para INDEX
+
+        > middleware - 
+            - EXPORT para INDEX
+
+        > routes - define as rotas de acesso que são os links que podem ser acessados pelo usuário, tais como "/user" , "/user/:id", entre outros. Essas rotas podem dão possibilidade a operações do tipo post, get, put, etc. Essas operações são efetuas dentro "user.js" através de comandos como " .post(app.api.user.save) "
+            - EXPORT para INDEX
+
+    > migrations - Criação de tabelas no postgres por intermédio do knex
+        - EXPORT UP (CRIAR TABELA), EXPORT DOWN(DESFAZER CRIAÇÃO DA TABELA)
+
+    > "index.js" - 
+        - IMPORT - "db.js" e insere dentro de app.db
+        - IMPORT - middleware
+        - IMPORT - validation
+        - IMPORT - "pasta api" - Lê todos arquivos dessa pasta
+        - IMPORT - routes
+    
+    > "knexfile.js"
+        - EXPORT - para "db.js"

@@ -20,3 +20,32 @@ tipo: post
     "confirmPassword": "123456",
     "admin": true
 }
+
+
+//Popular tabela "categories"
+Body > Raw > Json
+url: http://localhost:3000/categories
+tipo: post 
+
+{
+    "name": "Web Moderno"
+}
+
+{
+    "name": "CSS",
+    "parentId": 1
+}
+
+{
+    "name": "JS",
+    "parentId": 1
+}
+
+{
+    "name": "VueJS",
+    "parentId": 3
+}
+
+{
+    "name": "Pra alterar"
+}

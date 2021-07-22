@@ -7,7 +7,7 @@ module.exports = app => {
 
     //função para criptografar a senha fornecida pelo usuário e depois persistir no BD
     const encryptPassword = password => {
-        const salt = bcrypt.genSaltSync(10) // "10" é o número de repetições para processar os dados
+        const salt = bcrypt.genSaltSync(10) // "10" é o número de repetições para processar os dados. Mesmo que dois usuário diferentes utilizem a mesma senha cada chave de criptografia será única.
         return bcrypt.hashSync(password, salt) //Vai gerar o hash da senha de forma síncrona
     }
 
@@ -28,7 +28,7 @@ module.exports = app => {
             //O "db.js" retorna um knex e o "index.js" pega esse "db" e coloca dentro de "app.db", então o "db" é a forma que tem para acessar o knex. Então tudo que for feito em "app.db" poderia ser feito com "knex(nomeDaTabela)"
             const userFromDB = await app.db('users')
                 .where({ email: user.email }).first() //filtragem de usuário de acordo ao seu email
-            if(!user.id){ //Verifica se existe o ID do usuário, se não existir, faz as outras verificações para confirmar se não há dados iguais, como o email, por exemplo.
+            if(!user.id){ //Verifica se existe o ID do usuário, se não existir, faz as outras verificações para confirmar se não há dados iguais a de outros usuários já cadastrados, como o email, por exemplo.
                 notExistsOrError(userFromDB, 'Usuário já cadastrado')
             }
         }catch(msg){
@@ -53,6 +53,7 @@ module.exports = app => {
         }
     }
 
+    //Obter os dados de todos usuários na tabela
     const get = (req,res) => {
         app.db('users')
             .select('id', 'name', 'email', 'admin')
@@ -70,5 +71,5 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    return { save, get,  getById}
+    return { save, get,  getById }
 }

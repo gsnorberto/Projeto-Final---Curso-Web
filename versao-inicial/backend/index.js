@@ -3,7 +3,7 @@ const consign = require('consign')
 const db = require('./config/db')
 
 //O app.db estará disponível dentro da api 
-app.db = db
+app.db = db //utilizado em "user.js" para manipulações no BD do Postgres (put, get..)
 
 //Injeta em cada uma das dependências que ele vai carregar, vai injetar como parâmetro o app
 consign()

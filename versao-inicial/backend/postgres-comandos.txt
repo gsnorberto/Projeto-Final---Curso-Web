@@ -19,3 +19,6 @@ COMANDOS:
     SELECIONAR UMA TABELA DO DB
         - select * from knex_migrations;
         - select * from users;
+
+    DELETAR UM BD
+        - drop database knowledge;
