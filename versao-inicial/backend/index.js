@@ -8,6 +8,7 @@ app.db = db
 //Injeta em cada uma das dependências que ele vai carregar, vai injetar como parâmetro o app
 consign()
     .then('./config/middleware.js') //Lê os Middlewares
+    .then('./api/validation.js')
     .then('./api') //Lê os arquivos de API
     .then('./config/routes.js') //Lê as rotas com as APIs já carregadas
     .into(app)

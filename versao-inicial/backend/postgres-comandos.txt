@@ -8,13 +8,14 @@ COMANDOS:
         - \l
 
     //CRIAR UM BANCO DE DADOS (NÃO ESQUEÇA DO ";")
-        - create database knowledge_final;
+        - create database knowledge;
 
     //SE CONECTAR AO BANCO DE DADOS DEFINIDO
-        - \c knowledge_final 
+        - \c knowledge
 
     //VERIFICAR SE HÁ TABELAS NO BD
         - \dt 
 
-    SELECIONAR UM DB
+    SELECIONAR UMA TABELA DO DB
         - select * from knex_migrations;
+        - select * from users;

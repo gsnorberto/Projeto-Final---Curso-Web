@@ -1,0 +1,22 @@
+Dados para popular tabelas através do Postman
+
+//Popular a tabela de usuários
+Body > Raw > Json
+url: http://localhost:3000/users
+tipo: post 
+
+{
+    "name": "Anna Silva",
+    "email": "ana_silva@outlook.com",
+    "password": "123456",
+    "confirmPassword": "123456",
+    "admin": true
+}
+
+{
+    "name": "Gabriel Norberto",
+    "email": "sn_gabriel@outlook.com",
+    "password": "123456",
+    "confirmPassword": "123456",
+    "admin": true
+}
