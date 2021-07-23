@@ -68,24 +68,24 @@ module.exports = app => {
         //Filtra no BD "categories" tuplas que tenham id igual ao parentId de outra tupla. Ou seja, tuplas que estão relacionadas.
         const getParent = (categories, parentId) => {
             let parent = categories.filter(parent => parent.id === parentId)
-            return parent.length ? parent[0] : null
+            return parent.length ? parent[0] : null // retorna todo conteúdo do parent ou nulo
         }
 
-        //O resultado desse map será as categorias com um atributo a mais
+        //O resultado desse map será as categorias com a inclusão do atributo "path" em cada categoria
         const categoriesWithPath = categories.map(category => {
-            let path = category.name //nome da categoria que está sendo incluída
-            let parent = getParent(categories, category.parentId) //procura o parent, se existir
+            let path = category.name //nome da categoria que está sendo incluída. Ex: VueJS
+            let parent = getParent(categories, category.parentId) //chama a função passando todas as categorias do DB e passando o ID do parent da categoria atual (ex: 3 = "JS"). No final, recebe o parent do VueJS , que no exemplo é "JS"
 
             //enquanto existir parent, continue procurando os parents e continue concatendando em path para concatenar o path completo
-            while(parent){
-                path = `${parent.name} > ${path}`
-                parent = getParent(categories, parent.parentId) // se retornar nulo, sai do while
+            while(parent){ // Sai do while quando "parent" for nulo
+                path = `${parent.name} > ${path}` //JS > VueJS
+                parent = getParent(categories, parent.parentId) // passa as categorias e parentId do parent atual (JS) que nesse exemplo é 1 = "webModerno". "parent" passa a ser "webModerno"
             }
 
             return{...category, path}
         })
 
-        // Ordenação alfabética das categorias
+        // Ordenação alfabética pelo nome dos path
         // O "a" vai ser uma categoria e o "b" vai ser outra categoria
         categoriesWithPath.sort((a,b) => {
             if(a.path < b.path) return -1
