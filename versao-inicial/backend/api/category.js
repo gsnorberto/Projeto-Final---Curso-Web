@@ -115,5 +115,24 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    return { save, remove, get, getById }
+    /*********** ÁRVORE DE CATEGORIAS **************/
+    //Transformar um array de Categorias em uma estrutura de árvore que ficará no menu da aplicação.
+    const toTree = (categories, tree) => {
+        if(!tree) tree = categories.filter(c => !c.parentId) //Pega as categorias que não tem parentID. Ou seja, vão ser as categorias no topo do nó que podem ter filhas mas não tem pai. 
+
+        tree = tree.map(parentNode => {
+            const isChild = node => node.parentId == parentNode.id //Se for igual, significa que o "node" é filho direto de "parentNode"
+            parentNode.children = toTree(categories, categories.filter(isChild)) //verifica se dentro das categorias existe uma categoria com parentID igual ao ID dos elementos que já estão na árvore "tree"
+            return parentNode
+        })
+        return tree
+    }
+
+    const getTree = (req, res) => {
+        app.db('categories')
+            .then(categories => res.json(toTree(withPath(categories)))) //gera todas as categorias com o atributo path e o resultado dessa chamada será passado como parâmetro para função que converte as categorias em formato de árvore. Por fim, converte em json e retorna o resultado ao front end
+            .catch(err => res.status(500).send(err))
+    }
+
+    return { save, remove, get, getById, getTree }
 }

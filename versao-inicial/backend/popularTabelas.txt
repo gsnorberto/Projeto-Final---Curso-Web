@@ -49,3 +49,15 @@ tipo: post
 {
     "name": "Pra alterar"
 }
+
+//Popular tabela "articles"
+Body > Raw > Json
+url: http://localhost:3000/categories
+tipo: post 
+{
+    "name": "10 motivos para usar VueJS",
+    "description": "O artigo aborda os aspectos...",
+    "userId": 1,
+    "categoryId": 4,
+    "content": "Conteúdo do artigo..."
+}
