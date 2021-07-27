@@ -1,4 +1,4 @@
-const { where, update } = require("../config/db")
+const queries = require('./queries')
 
 module.exports = app => {
     const { existsOrError } = app.api.validation
@@ -80,5 +80,22 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    return { save, remove, get, getById }
+    /****** CONSULTA DE CATEGORIAS COM OS NÓS FILHOS *******/
+    getByCategory = async (req, res) => {
+        const categoryId = req.params.id
+        const page = req.query.page || 1
+        const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
+        const ids = categories.rows.map(c => c.id) //ARRAY DE IDs. Vai obter o próprio ID da categoria Pai mais os IDs das categorias filhas.
+
+        app.db({a: 'articles', u: 'users'}) // faz a consulta em duas tabelas diferentes
+            .select('a.id', 'a.name', 'a.description', 'a.imageUrl', {author: 'u.name'})
+            .limit(limit).offset(page*limit-limit)
+            .whereRaw('?? = ??', ['u.id', 'a.userId']) // igualar as duas tabelas para que o "u.id" seja igual ao "a.userId"
+            .whereIn('categoryId', ids) //Pega as categorias correspondentes aos "ids" fornecidos
+            .orderBy('a.id', 'desc')
+            .then(articles => res.json(articles)) // envia como resposta os artigos em formato JSON
+            .catch(err => res.status(500).send(err))
+    }
+
+    return { save, remove, get, getById, getByCategory }
 }
