@@ -7,6 +7,7 @@ app.db = db //utilizado em "user.js" para manipulações no BD do Postgres (put,
 
 //Injeta em cada uma das dependências que ele vai carregar, vai injetar como parâmetro o app
 consign()
+    .include('./config/passport.js')
     .then('./config/middleware.js') //Lê os Middlewares
     .then('./api/validation.js')
     .then('./api') //Lê os arquivos de API
