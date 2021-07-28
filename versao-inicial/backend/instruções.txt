@@ -17,6 +17,7 @@ COMANDOS
     - knex migrate:make create_table_users 
     - knex migrate:make create_table_categories
     - knex migrate:make create_table_articles
+    - knex migrate:make add_deleted_at_table_users
 
     //RODA TODAS AS MIGRATIONS: USES, CATEGORIES, ARTICLES, ETC.
     - knex migrate:latest 
@@ -62,3 +63,11 @@ ARQUIVOS
         - EXPORT - para "db.js"
 
 O arquivo ".env" é usado para gerar uma chave JWT, para dizer se o usuário se autenticou no seu sistema. Quanto mais complexa a chave for, melhor será pra gerar um token mais seguro. Se essa chave eventualmente vazar o sistema estará comprometido e isso significa que alguém poderá gerar um token e se passar por uma pessoa autenticada. O ideal é que esse arquivo nunca seja commitado.
+
+db: {
+        host: '127.0.0.1',
+        port: 5432,
+        database: 'knowledge',
+        user: 'postgres',
+        password: '11asdf'
+    }

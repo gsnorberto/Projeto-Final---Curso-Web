@@ -33,7 +33,7 @@ module.exports = app => {
             exp: now + (60 * 60 * 24 * 3) //isso significa que se o usuário logar hoje o usuário pode fechar o browser, o token vai ficar na máquina dele por 3 dias, não sendo necessário ele se logar novamente
         }
 
-        //no momento em que essa resposta for mandada para o usuário será mandado o token para ele, e aparir daí, qualquer requisição que for feita, precisará ter um cabeçalho chamado "autorization"
+        //no momento em que essa resposta for mandada para o usuário será mandado o token para ele, e apartir daí, qualquer requisição que for feita, precisará ter um cabeçalho chamado "autorization"
         res.json({
             ...payload,
             token: jwt.encode(payload, authSecret) //codificar o token
@@ -44,7 +44,7 @@ module.exports = app => {
         const userData = req.body || null
         try{
             if(userData){
-                const token = jwt.decode(userData.token, authSecret) //para decodificar o  token é preciso do authSecret
+                const token = jwt.decode(userData.token, authSecret) //para decodificar o  token (código gerado pelo sistema quando você faz o login e que deve ser informado sempre que desejar acessá-lo) é preciso do authSecret que contém a chave de segurança do arquivo ".env"
                 if(new Date(token.exp * 1000) > new Date()){ //se a data do token de expiração for maior que a data atual significa que o token ainda está válido
                     return res.send(true)
                 }

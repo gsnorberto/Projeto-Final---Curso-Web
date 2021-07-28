@@ -1,0 +1,11 @@
+//Autorização de acesso - POSTMAN
+
+Header
+Authorization - bearer chaveDeUsuario
+Content-Type - application/json
+
+OBS: A chave de usuário é obtida através de um post na url: http://localhost:3000/signin passando no body o json:
+{
+    "email": "sn_gabriel@outlook.com",
+    "password": "******"
+}
