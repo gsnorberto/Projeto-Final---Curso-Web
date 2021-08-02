@@ -1,3 +1,4 @@
+//Representa cada um dos ícones com título e valor da página inicial
 <template>
     <div class="stat">
         <div class="stat-icon">

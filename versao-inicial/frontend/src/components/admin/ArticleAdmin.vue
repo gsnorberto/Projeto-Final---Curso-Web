@@ -1,3 +1,4 @@
+//Gerenciamento de artigos na parte de Administração do Sistema
 <template>
   <div class="article-admin">
       <h1>Artigo Componente</h1>
