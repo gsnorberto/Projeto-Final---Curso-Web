@@ -1,16 +1,16 @@
 //Gerenciamento de artigos na parte de Administração do Sistema
 <template>
   <div class="article-admin">
-      <h1>Artigo Componente</h1>
+    <h1>Artigo Componente</h1>
   </div>
 </template>
 
 <script>
-export default {
-    name: 'ArticleAdmin'
-}
+  //Exporta para AdminPages.vue
+  export default {
+    name: "ArticleAdmin",
+  }
 </script>
 
 <style>
-
 </style>

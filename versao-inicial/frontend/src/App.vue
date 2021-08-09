@@ -1,5 +1,5 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible}"> <!-- Se o menu não estiver visível vai aplicar a classe css "hide-menu"-->
+	<div id="app" :class="{'hide-menu': !isMenuVisible}"> <!-- Esconder menu quando o "isMenuVisible" estiver false -->
 		<!--false = exibe os botões do header-->
 		<Header title="Cod3r - Base de Conhecimento"
 			:hideToggle="false" 

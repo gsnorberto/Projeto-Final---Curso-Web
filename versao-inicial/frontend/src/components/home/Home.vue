@@ -1,4 +1,4 @@
-//Conteúdo da Pagina inicial que importa o componente Stat para renderizar cada ícone junto com título e valor
+//Conteúdo da Pagina inicial que importa o componente Stat (para renderizar cada ícone junto com título e valor) e o PageTitle para renderizar o título e subtítulo. 
 <template>
     <div class="home">
         <PageTitle icon="fa fa-home" main="Dashboard" sub="Base de Conhecimento" />
@@ -21,7 +21,7 @@ export default {
     components: { PageTitle, Stat },
     data: function(){
         return{
-            stat: {}
+            stat: {} //Todos os dados recebidos do backend
         }
     },
     methods: { //reqisição para o back end

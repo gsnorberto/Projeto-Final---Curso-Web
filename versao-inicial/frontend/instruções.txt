@@ -1,2 +1,5 @@
-Startar aplicação:
+Startar aplicação front:
     npm run serve
+
+Para acesso ao BD deve entrar com uma chave atualizada no "main.js"
+Para isso, acesse o postman e faça um "post" em cima da url: "http://localhost:3000/signin" passando no corpo da requisição um json com o  "email" e "password" do usuário.

@@ -12,7 +12,7 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-        toggleMenu(state, isVisible){
+        toggleMenu(state, isVisible){ //exportado para o "Header"
             if(isVisible === undefined){ //alterna entre true e false a cada chamada
                 state.isMenuVisible = !state.isMenuVisible
             } else {
