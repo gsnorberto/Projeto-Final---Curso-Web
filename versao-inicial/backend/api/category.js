@@ -6,7 +6,12 @@ module.exports = app => {
 
     /************** SALVAR CATEGORIA *************/
     const save = (req, res) => {
-        const category = { ...req.body } //Nome e ParentId(não obrigatório o preenchimento)
+        //Filtrar o que vem do Body para pegar o que realmente interessa
+        const category = {
+            id: req.body.id,
+            name: req.body.name,
+            parentId: req.body.parentId,
+        } //Nome e ParentId(não obrigatório o preenchimento)
 
         //Se vier um id nos parâmetros da requisição, signifca que o usuário deseja fazer um opdate (Put)
         if(req.params.id) category.id = req.params.id
