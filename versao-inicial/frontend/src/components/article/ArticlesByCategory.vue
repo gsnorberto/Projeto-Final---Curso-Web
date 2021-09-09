@@ -5,7 +5,7 @@
 
         <ul>
             <li v-for="article in articles" :key="article.id">
-                {{ article.name }}
+                <ArticleItem :article="article" />
             </li>
         </ul>
         <div class="load-more">
@@ -20,9 +20,11 @@
     import { baseApiUrl } from '@/global'
     import axios from 'axios'
     import PageTitle from '../template/PageTitle'
+    import ArticleItem from './ArticleItem.vue'
+
     export default {
         name: 'ArticlesByCategory',
-        components: { PageTitle },
+        components: { PageTitle, ArticleItem },
         data: function (){
             return{
                 category: {},
@@ -44,6 +46,19 @@
 
                     if(res.data.lenght === 0) this.loadMore = false //desativa o botão de "Carregar Mais" quando o não tiver mais dados 
                 })
+            }
+        },
+        watch: {
+            //monitoramento dos componentes de rota
+            $route(to){
+                this.category.id = to.params.id //pega o id que vem no parâmetro da URL
+                //resetar as configurações quando alterna entre as categorias no menu
+                this.articles = []
+                this.page = 1
+                this.loadMore = true
+
+                this.getCategory()
+                this.getArticles()
             }
         },
         mounted(){

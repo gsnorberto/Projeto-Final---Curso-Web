@@ -52,7 +52,7 @@ module.exports = app => {
 
     /***************************************************/
     /** CONSULTA DE TODOS ARTIGOS (USANDO PAGINAÇÃO) **/
-    const limit = 2 //quantidade de artigos por página
+    const limit = 5 //quantidade de artigos por página
 
     const get = async (req, res) => {
         const page = req.query.page || 1 //número atual da página

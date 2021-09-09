@@ -1,5 +1,6 @@
+MENU LATERAL DIREITO DO HEADER
+
 <template>
-    <!-- Menu lateral direito do Header -->
     <div class="user-dropdown">
         <div class="user-button">
             <span class="d-none d-sm-block"> {{ user.name }} </span>
@@ -9,24 +10,34 @@
             <i class="fa fa-angle-down"></i>
         </div>
         <div class="user-dropdown-content">
-            <router-link to="/admin">
+            <!--Só vai ter acesso ao link da página de administração se o usuário for um administrador-->
+            <router-link to="/admin" v-if="user.admin"> 
                 <i class="fa fa-cogs"></i> Administração
             </router-link>
             
-            <a href="">
-                <i class="fa fa-sign-out"></i> Sair </a>
+            <a href @click.prevent="logout">
+                <i class="fa fa-sign-out"></i> Sair
+            </a>
         </div>
     </div>
 </template>
 
 <script>
+import { userKey } from '@/global'
 import { mapState } from 'vuex'
 import Gravatar from 'vue-gravatar'
 
 export default {
     name: 'UserDropdown',
     components: { Gravatar },
-    computed: mapState(['user']) //tem acesso ao usuário dentro desse componente. Esse usuário foi definido no "store.js"
+    computed: mapState(['user']), //tem acesso ao usuário dentro desse componente. Esse usuário foi definido no "store.js"
+    methods: {
+        logout(){
+            localStorage.removeItem(userKey)
+            this.$store.commit('setUser', null) //vai esconder o menu e coisas do tipo
+            this.$router.push({ name: 'auth' }) //Vai para a tela de autenticação
+        }
+    }
 }
 </script>
 

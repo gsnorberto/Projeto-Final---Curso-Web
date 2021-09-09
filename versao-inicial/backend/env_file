@@ -1,3 +1,5 @@
+Crie o arquivo ".env" e cole o texto abaixo substituindo o password
+
 module.exports = {
     authSecret: 'abc',
     db: {
@@ -5,6 +7,6 @@ module.exports = {
         port: 5432,
         database: 'knowledge',
         user: 'postgres',
-        password: '11asdf'
+        password: '**asdf'
     }
 }
